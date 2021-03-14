@@ -59,7 +59,7 @@ struct SegmentTree
 
     void push(int i, int l, int r) // i-> tree index , l-> left bound, r-> right bound for range updates
     {
-        t[i] = upd(t[i], (lazy[i] * (r - l + 1)));
+        t[i] = upd(t[i], (lazy[i]));
         if (l != r)
         {
             lazy[lc(i)] = upd(lazy[lc(i)], lazy[i]);
