@@ -35,6 +35,7 @@ struct SegTree
     vector<Data> st;
     vector<bool> cLazy;
     vector<int> lazy;
+    vector<int> a;
 
     void init(int n)
     {
@@ -42,6 +43,12 @@ struct SegTree
         st.resize(4 * N + 5);
         cLazy.assign(4 * N + 5, false);
         lazy.assign(4 * N + 5, 0);
+    }
+    void init(int n, vi a)
+    {
+        init(n);
+        this->a = move(a);
+        build(1, 1, N);
     }
 
     //Write required merge functions
