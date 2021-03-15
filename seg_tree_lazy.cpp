@@ -39,9 +39,9 @@ struct SegTree
     void init(int n)
     {
         N = n;
-        st.resize(3 * N + 5);
-        cLazy.assign(3 * N + 5, false);
-        lazy.assign(3 * N + 5, 0);
+        st.resize(4 * N + 5);
+        cLazy.assign(4 * N + 5, false);
+        lazy.assign(4 * N + 5, 0);
     }
 
     //Write reqd merge functions
