@@ -44,7 +44,7 @@ struct SegTree
         lazy.assign(4 * N + 5, 0);
     }
 
-    //Write reqd merge functions
+    //Write required merge functions
     void merge(Data &cur, Data &l, Data &r)
     {
         cur.mn = max(l.mn, r.mn);
