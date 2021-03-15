@@ -1,7 +1,11 @@
 /* 
     Segment tree supporting point updates and range queries 
    currently supports range max query 
-   TODO: range sum queries
+     1 indexed tree(t) and source array(a)
+     give build(1,1,N), where N is the size of source array (a)
+    Range Sum queries refer : 
+    problem : https://cses.fi/problemset/task/1651/
+    solution: https://cses.fi/paste/fd3e8d634491d3cd1c12ed/
    current lazy update is set a[i]+=val;
    version 2 will have
    set a[i]=x;
@@ -79,7 +83,7 @@ struct SegTree
     {
         if (L == R)
         {
-            st[node].mn = 0;
+            st[node].mn = a[L];
             return;
         }
         int M = L + (R - L) / 2;
