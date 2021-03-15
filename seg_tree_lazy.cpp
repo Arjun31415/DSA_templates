@@ -3,10 +3,12 @@
    currently supports range max query 
      1 indexed tree(t) and source array(a)
      give build(1,1,N), where N is the size of source array (a)
+
     Range Sum queries refer : 
     problem : https://cses.fi/problemset/task/1651/
     solution: https://cses.fi/paste/fd3e8d634491d3cd1c12ed/
    current lazy update is set a[i]+=val;
+
    version 2 will have
    set a[i]=x;
 */
@@ -30,6 +32,9 @@ struct Data
     int mn = 0;
 
     //Default Values
+    // since max queries are to be done (on positive numbers) default value of mn is aasigned 0,
+    // but instead if min queries are to be done assign mn=INT_MAX.
+    // for other cases give appropriate values
     Data() : mn(0){};
 };
 
