@@ -1,3 +1,5 @@
+//List of Problems - https : //leetcode.com/list/xysqsyp7/s
+
 #include <stdlib.h>
 #include <cstring>
 #include <string>
@@ -98,7 +100,6 @@ namespace stringTrie
 
 */
 // problems -
-// List of Problems- https://leetcode.com/list/xysqsyp7/s
 // 1.https://leetcode.com/problems/word-search-ii/ requires Trie and dfs
 
 namespace intTrie
@@ -219,5 +220,6 @@ namespace intTrie
         }
     };
     // problems-
-    // https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/
+    // 1.https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/
+    // 2.http://codeforces.com/contest/706/problem/D
 }
