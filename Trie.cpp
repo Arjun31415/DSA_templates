@@ -139,6 +139,13 @@ namespace intTrie
         }
         Trie(vector<int> &a)
         {
+            root = new Node();
+            insert(a);
+        }
+        Trie(vector<int> &a, int bits)
+        {
+            this->bits = bits;
+            root = new Node();
             insert(a);
         }
         void set_no_bits(int a)
