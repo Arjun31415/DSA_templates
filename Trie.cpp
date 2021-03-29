@@ -44,6 +44,7 @@ namespace stringTrie
         }
         Trie(vector<string> &a)
         {
+            root = new Node();
             insert(a);
         }
         void insert(string &s)
