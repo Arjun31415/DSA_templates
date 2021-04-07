@@ -63,7 +63,6 @@ public:
 	{
 		return Point(x / value, y / value, z / value);
 	}
-
 	Point operator+(const Point<T> &b)
 	{
 		return Point(this->x + b.x, this->y + b.y, this->z + b.z);
