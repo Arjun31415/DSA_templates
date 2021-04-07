@@ -17,22 +17,22 @@ using namespace std;
 #define sign(x) (x > 0) - (x < 0)
 #define epsilon 1e-9
 template <typename T>
-class point
+class Point
 {
 public:
 	T x, y, z;
 
-	point()
+	Point()
 	{
 		x = y = z = 0;
 	}
-	point(T x, T y, T z)
+	Point(T x, T y, T z)
 	{
 		this->x = x;
 		this->y = y;
 		this->z = z;
 	}
-	point(T x, T y)
+	Point(T x, T y)
 	{
 		this->x = x;
 		this->y = y;
@@ -56,24 +56,24 @@ public:
 		this->y = y;
 		this->z = z;
 	}
-	point operator*(T value)
+	Point operator*(T value)
 	{
-		return point(x * value, y * value, z * value);
+		return Point(x * value, y * value, z * value);
 	}
-	point operator/(T value)
+	Point operator/(T value)
 	{
-		return point(x / value, y / value, z / value);
+		return Point(x / value, y / value, z / value);
 	}
 
-	point operator+(const point<T> &b)
+	Point operator+(const Point<T> &b)
 	{
-		return point(this->x + b.x, this->y + b.y, this->z + b.z);
+		return Point(this->x + b.x, this->y + b.y, this->z + b.z);
 	}
-	point operator-(const point<T> &b)
+	Point operator-(const Point<T> &b)
 	{
-		return point(this->x - b.x, this->y - b.y, this->z - b.z);
+		return Point(this->x - b.x, this->y - b.y, this->z - b.z);
 	}
-	T distance(const point<T> &p)
+	T distance(const Point<T> &p)
 	{
 		return sqrt((this->x - p.x) * (this->x - p.x) + (this->y - p.y) * (this->y - p.y) + (this->z - p.z) * (this->z - p.z));
 	}
@@ -81,7 +81,7 @@ public:
 	{
 		return (this->y) / (this->x);
 	}
-	T slope2D(const point<T> &other)
+	T slope2D(const Point<T> &other)
 	{
 		return (this->y - other.y) / (this->x - other.x);
 	}
@@ -89,38 +89,38 @@ public:
 	{
 		return arctan(this->slope2D());
 	}
-	void operator=(const point<T> b)
+	void operator=(const Point<T> b)
 	{
 		this->x = b.x;
 		this->y = b.y;
 		this->z = b.z;
 	}
-	point &operator+=(const point<T> b)
+	Point &operator+=(const Point<T> b)
 	{
 		return (*this = *this + b);
 	}
-	point &operator-=(const point<T> &b)
+	Point &operator-=(const Point<T> &b)
 	{
 		*this = *this - b;
 		return *this;
 	}
-	point &operator*=(T val)
+	Point &operator*=(T val)
 	{
 		*this = (*this) * val;
 		return *this;
 	}
-	point &operator/=(T val)
+	Point &operator/=(T val)
 	{
 		*this = (*this) / val;
 		return *this;
 	}
-	bool operator==(const point<T> &other)
+	bool operator==(const Point<T> &other)
 	{
 		if (std::is_floating_point<T>::value)
 			return (abs(this->x - other.x) <= epsilon && abs(this->y - other.y) <= epsilon && abs(this->z - other.z) <= epsilon);
 		return ((this->x == other.x) && (this->y == other.y) && (this->z == other.z));
 	}
-	bool operator!=(const point<T> &other)
+	bool operator!=(const Point<T> &other)
 	{
 		return (!(*this == other));
 	}
@@ -128,7 +128,7 @@ public:
 	{
 		return abs(sqrt(x * x + y * y + z * z));
 	}
-	bool operator<(const point<T> &b)
+	bool operator<(const Point<T> &b)
 	{
 		if (this->x == b.x)
 			return this->y < b.y;
@@ -141,7 +141,7 @@ template <typename T, char iterations = 3>
 // using fast inverse square root algorithm found in Quake III
 inline T inv_sqrt(T x)
 {
-	static_assert(std::is_floating_point<T>::value, "T must be floating point");
+	static_assert(std::is_floating_point<T>::value, "T must be floating Point");
 	static_assert(iterations >= 1 and iterations <= 5, "itarations must lie between [1 , 5] and must be integer values");
 	typedef typename std::conditional<sizeof(T) == 8, std::int64_t, std::int32_t>::type Tint;
 	T y = x;
@@ -169,26 +169,26 @@ double deg_to_rad(double val)
 	return val * M_PI / 180;
 }
 template <typename T>
-T dot(point<T> a, point<T> b)
+T dot(Point<T> a, Point<T> b)
 {
 	return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 template <typename T>
-float ang(point<T> a, point<T> b, bool deg = true)
+float ang(Point<T> a, Point<T> b, bool deg = true)
 {
 	return (acos(dot(a, b) * inv_sqrt(dot(a, a) * dot(b, b))) * (deg == true ? 180 / M_PI : 1));
 }
 template <typename T>
-point<T> cross(point<T> a, point<T> b)
+Point<T> cross(Point<T> a, Point<T> b)
 {
 	T x0 = a.x, y0 = a.y, z0 = a.z;
 	T x1 = b.x, y1 = b.y, z1 = b.z;
 	// adding 0.00 to avoid -0 output
-	return point<T>(y0 * z1 - z0 * y1 + 0.00, z0 * x1 - x0 * z1 + 0.00, x0 * y1 - y0 * x1 + 0.00);
+	return Point<T>(y0 * z1 - z0 * y1 + 0.00, z0 * x1 - x0 * z1 + 0.00, x0 * y1 - y0 * x1 + 0.00);
 }
 template <typename T>
 
-int intersection(point<T> p0, point<T> p1, point<T> p2, point<T> p3, point<T> &intx)
+int intersection(Point<T> p0, Point<T> p1, Point<T> p2, Point<T> p3, Point<T> &intx)
 {
 	/**
    *  @brief Return the intersection of two line segments .
@@ -196,11 +196,11 @@ int intersection(point<T> p0, point<T> p1, point<T> p2, point<T> p3, point<T> &i
    *  @param  p1   End of first line segment.
    *  @param  p2  Start of second line segment.
    *  @param  p3   End of second line segment.
-   *  @param  intx  the intersection point.
+   *  @param  intx  the intersection Point.
    *  @return  Returns 1 if the lines intersect,2 if lines are collinear,3 if lines are parallel,otherwise 0
    *  It is based on an algorithm in Andre LeMothe's "Tricks of the Windows Game Programming Gurus"
-   *  the refrence point will store null
-   *  intx stores the intersection point if it exists else
+   *  the refrence Point will store null
+   *  intx stores the intersection Point if it exists else
    *  will be intialized to null
   */
 	double p0_x = p0.x, p0_y = p0.y;
@@ -220,7 +220,7 @@ int intersection(point<T> p0, point<T> p1, point<T> p2, point<T> p3, point<T> &i
 	{
 
 		// parallel or collinear lines
-		// if they are collinear then their slope will be the same for any two pair of points
+		// if they are collinear then their slope will be the same for any two pair of Points
 		if (p0.slope2D(p1) == p1.slope2D(p2) && p2.slope2D(p3) == p3.slope2D(p0) && p1.slope2D(p0) == p0.slope2D(p3))
 			return 2;
 		return 3;
@@ -239,23 +239,23 @@ int intersection(point<T> p0, point<T> p1, point<T> p2, point<T> p3, point<T> &i
 	return 0; // No collision
 }
 template <typename T>
-double signed_area_of_parallelogram(point<T> a, point<T> b, point<T> c)
+double signed_area_of_parallelogram(Point<T> a, Point<T> b, Point<T> c)
 {
 	return (cross(b - a, c - b).z);
 }
 template <typename T>
-double area_of_triangle(point<T> a, point<T> b, point<T> c)
+double area_of_triangle(Point<T> a, Point<T> b, Point<T> c)
 {
 	return abs(signed_area_of_parallelogram(a, b, c) * 0.5);
 }
 template <typename T>
-int direction(point<T> a, point<T> b, point<T> c)
+int direction(Point<T> a, Point<T> b, Point<T> c)
 {
 	long long t = signed_area_of_parallelogram(a, b, c);
 	return (sign(t));
 }
 template <typename T>
-double area_of_polygon(point<T> a[], int n)
+double area_of_polygon(Point<T> a[], int n)
 {
 	double area = 0;
 	for (int i = 0; i < n; i++)
@@ -267,7 +267,7 @@ double area_of_polygon(point<T> a[], int n)
 	return abs(area);
 }
 template <typename T>
-double area_of_polygon(vector<point<T>> a, int n = 0)
+double area_of_polygon(vector<Point<T>> a, int n = 0)
 {
 	if (n == 0)
 		n = a.size();
@@ -281,8 +281,8 @@ double area_of_polygon(vector<point<T>> a, int n = 0)
 	return abs(area);
 }
 template <typename T>
-// counterclockwise direction of points and must be convex polygon
-bool check_point_in_polygon(point<T> a[], int n, point<T> p)
+// counterclockwise direction of Points and must be convex polygon
+bool check_Point_in_polygon(Point<T> a[], int n, Point<T> p)
 {
 	// query time O(log n)
 	int l = 1, r = n - 2;
@@ -295,7 +295,7 @@ bool check_point_in_polygon(point<T> a[], int n, point<T> p)
 			r = x - 1;
 		else
 		{
-			//the point lies between the vectors l and r
+			//the Point lies between the vectors l and r
 			l = r = x;
 		}
 	}
@@ -304,7 +304,7 @@ bool check_point_in_polygon(point<T> a[], int n, point<T> p)
 	return false;
 }
 template <typename T>
-vector<point<T>> minkowski_sum(vector<point<T>> a, vector<point<T>> b, bool remove_redundant = true)
+vector<Point<T>> minkowski_sum(vector<Point<T>> a, vector<Point<T>> b, bool remove_redundant = true)
 {
 	int l = 0;
 	int n = a.size();
@@ -320,7 +320,7 @@ vector<point<T>> minkowski_sum(vector<point<T>> a, vector<point<T>> b, bool remo
 		if (b[i].x < b[l].x || (b[i].x == b[l].x && b[i].y < b[l].y))
 			r = i;
 	}
-	vector<point<T>> v;
+	vector<Point<T>> v;
 	for (int i = 0; i < m + n; i++)
 	{
 		v.push_back(a[l] + b[r]);
@@ -337,12 +337,12 @@ vector<point<T>> minkowski_sum(vector<point<T>> a, vector<point<T>> b, bool remo
 	{
 		if (direction(v[i], v[(i + 1) % (n + m)], v[(i + 2) % (n + m)]) == 0)
 		{
-			// redundant point
+			// redundant Point
 			mark.insert((i + 1) % (n + m));
 		}
 	}
 
-	vector<point<T>> vv;
+	vector<Point<T>> vv;
 
 	for (int i = 0; i < n + m; i++)
 	{
@@ -354,10 +354,10 @@ vector<point<T>> minkowski_sum(vector<point<T>> a, vector<point<T>> b, bool remo
 	return vv;
 }
 template <typename T>
-// remove the redundant points present in a polygon represented by a vector<point<T>>
+// remove the redundant Points present in a polygon represented by a vector<Point<T>>
 
 // give n as -1 if you do not wish to give the size of the vector
-vector<point<T>> remove_redundant(vector<point<T>> v, int n)
+vector<Point<T>> remove_redundant(vector<Point<T>> v, int n)
 {
 	unordered_set<int> mark;
 	if (n == -1)
@@ -367,12 +367,12 @@ vector<point<T>> remove_redundant(vector<point<T>> v, int n)
 	{
 		if (direction(v[i], v[(i + 1) % (n)], v[(i + 2) % (n)]) == 0)
 		{
-			// redundant point
+			// redundant Point
 			mark.insert((i + 1) % (n));
 		}
 	}
 
-	vector<point<T>> vv;
+	vector<Point<T>> vv;
 
 	for (int i = 0; i < n; i++)
 	{
@@ -384,7 +384,7 @@ vector<point<T>> remove_redundant(vector<point<T>> v, int n)
 	return vv;
 }
 template <typename T>
-int max_points_in_circle(vector<point<T>> v, double r)
+int max_Points_in_circle(vector<Point<T>> v, double r)
 {
 	int n = v.size();
 	int ans = 1;
@@ -432,19 +432,19 @@ int max_points_in_circle(vector<point<T>> v, double r)
 	return ans;
 }
 template <typename T>
-vector<point<T>> convex_hull_jarvis_march(vector<point<T>> a)
+vector<Point<T>> convex_hull_jarvis_march(vector<Point<T>> a)
 {
 	int n = a.size();
 	if (n <= 2)
 		return a;
 	int start = 0;
-	// getting the leftmost bottom most point
+	// getting the leftmost bottom most Point
 	for (int i = 1; i < n; i++)
 	{
 		if (a[i].x < a[start].x || (a[i].x == a[start].x && a[i].y < a[start].y))
 			start = i;
 	}
-	vector<point<T>> ans;
+	vector<Point<T>> ans;
 	ans.pb(a[start]);
 	while (420)
 	{
@@ -468,33 +468,33 @@ vector<point<T>> convex_hull_jarvis_march(vector<point<T>> a)
 	}
 	return ans;
 }
-static point<int> polar_angle_point;
+static Point<int> polar_angle_Point;
 template <typename T>
-bool cmp(const point<T> &a, const point<T> &b)
+bool cmp(const Point<T> &a, const Point<T> &b)
 {
-	if (direction(polar_angle_point, a, b) == 1)
+	if (direction(polar_angle_Point, a, b) == 1)
 		return true;
-	else if (direction(polar_angle_point, a, b) == -1)
+	else if (direction(polar_angle_Point, a, b) == -1)
 		return 0;
 	else
-		return (dot(polar_angle_point - a, polar_angle_point - a) <
-				dot(polar_angle_point - b, polar_angle_point - b));
+		return (dot(polar_angle_Point - a, polar_angle_Point - a) <
+				dot(polar_angle_Point - b, polar_angle_Point - b));
 }
 template <typename T>
-vector<point<T>> convex_hull_graham_scan(vector<point<T>> a)
+vector<Point<T>> convex_hull_graham_scan(vector<Point<T>> a)
 {
 	int n = a.size();
 	if (n <= 2)
 		return a;
-	// store the leftmost bottommost point in a[0]
+	// store the leftmost bottommost Point in a[0]
 	for (int i = 1; i < n; i++)
 	{
 		if (a[i].x < a[0].x || (a[i].x == a[0].x && a[i].y < a[0].y))
 			swap(a[i], a[0]);
 	}
-	polar_angle_point = a[0];
+	polar_angle_Point = a[0];
 	sort(a.begin() + 1, a.end(), cmp<T>);
-	vector<point<T>> ans;
+	vector<Point<T>> ans;
 	ans.push_back(a[0]);
 	ans.pb(a[1]);
 	for (int i = 2; i < n; i++)
@@ -514,33 +514,33 @@ class DS
 {
 
 public:
-	set<point<T>> st;
-	priority_queue<point<T>> hp;
+	set<Point<T>> st;
+	priority_queue<Point<T>> hp;
 	long long d;
-	bool ins(point<T> a)
+	bool ins(Point<T> a)
 	{
-		hp.push(point<T>(-a.x, a.y));
-		st.insert(point<T>(a.y, a.x));
+		hp.push(Point<T>(-a.x, a.y));
+		st.insert(Point<T>(a.y, a.x));
 		return true;
 	}
-	bool del(point<T> a)
+	bool del(Point<T> a)
 	{
 		while (-hp.top().x < a.x - d)
 		{
-			auto it = st.find(point<T>(hp.top().y, -hp.top().x));
+			auto it = st.find(Point<T>(hp.top().y, -hp.top().x));
 			st.erase(it);
 			hp.pop();
 		}
 		return true;
 	}
-	vector<point<T>> query(point<T> a)
+	vector<Point<T>> query(Point<T> a)
 	{
-		auto it = st.lower_bound(point<T>(a.y - d, 0));
-		auto end = st.upper_bound(point<T>(a.y + d, 0));
-		vector<point<T>> ans;
+		auto it = st.lower_bound(Point<T>(a.y - d, 0));
+		auto end = st.upper_bound(Point<T>(a.y + d, 0));
+		vector<Point<T>> ans;
 		while (it != end)
 		{
-			ans.push_back(point<T>((*it).y, (*it).x));
+			ans.push_back(Point<T>((*it).y, (*it).x));
 		}
 		return ans;
 	}
@@ -550,7 +550,7 @@ int main()
 	int n, m;
 	cin >> n >> m;
 
-	vector<point<int>> a(n), b(m);
+	vector<Point<int>> a(n), b(m);
 	for (int i = 0; i < n; i++)
 	{
 		cin >> a[i].x >> a[i].y;
