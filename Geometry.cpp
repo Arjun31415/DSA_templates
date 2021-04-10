@@ -505,6 +505,7 @@ vector<Point<T>> convex_hull_graham_scan(vector<Point<T>> a)
 	}
 	return ans;
 }
+// using rotating callipers
 template <typename T>
 int diameter_of_convex_hull(vector<Point<T>> v)
 {
@@ -517,7 +518,7 @@ int diameter_of_convex_hull(vector<Point<T>> v)
 	}
 	// now pt1 and pt2 are parallel to each other
 	// pt1 and pt2 are on antipodal Points
-
+	// use appropriate distance formulae for calculation
 	ll ans = abs(v[pt2].y - v[pt1].y);
 	ll st1 = pt1, st2 = pt2;
 	//trace2(pt1, pt2);
@@ -533,6 +534,7 @@ int diameter_of_convex_hull(vector<Point<T>> v)
 			pt1++;
 			pt1 %= n;
 		}
+		// use appropriate distance formulae for calculation
 		ans = max(ans, abs(v[pt1].y - v[pt2].y));
 		//trace2(pt1, pt2);
 		//trace2((st1 != pt1), (st2 != pt2));
