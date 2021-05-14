@@ -160,17 +160,20 @@ void dfs(int cur, int par, vector<vector<int>> &adj)
     }
 }
 // parent[i][j] stores the 2^j th parent of node i
-int parent[100001][32];
+vector<vi> parent;
 vi out, in;
 int tim = 0;
+int l;
+// to assign all the vectors and variables call precalc()
 
 // ALWAYS CALL parent_calc(root,root,adj);
 // DON'T give p=-1 or p=0 else IT WILL MESS UP THE PARENT ARRAY
 void parent_calc(int cur, int par, vector<vi> &adj)
 {
     parent[cur][0] = par;
+    level[cur] = level[par] + 1;
     in[cur] = (++tim);
-    for (int i = 1; i <= 32; i++)
+    for (int i = 1; i <= l; i++)
     {
         int two_i_minus_1 = parent[cur][i - 1];
         parent[cur][i] = parent[two_i_minus_1][i - 1];
@@ -183,7 +186,7 @@ void parent_calc(int cur, int par, vector<vi> &adj)
 }
 bool is_first_anc_of_second(int u, int v)
 {
-    return in[u] <= in[v] and out[u] >= out[v];
+    return in[u] <= in[v] && out[u] >= out[v];
 }
 int find_lca(int u, int v)
 {
@@ -193,13 +196,27 @@ int find_lca(int u, int v)
     if (is_first_anc_of_second(v, u))
         return v;
 
-    for (int i = 19; i >= 0; --i)
+    for (int i = l; i >= 0; --i)
         if (!is_first_anc_of_second(parent[u][i], v))
             u = parent[u][i];
-
     return parent[u][0];
 }
+int d(int u, int v)
+{
+    return (level[u] + level[v] - 2 * level[find_lca(u, v)]);
+}
 
+// root is the root of the tree
+// n is the number of nodes
+void preprocess(int root, int n, vector<vi> &adj)
+{
+    in.clear(), in.resize(n);
+    out.clear(), out.resize(n);
+    tim = 0;
+    ::l = ceil(log2(n));
+    parent.clear(), parent.assign(n, vector<int>(l + 1));
+    dfs(root, root, adj);
+}
 signed main()
 {
     int n;
