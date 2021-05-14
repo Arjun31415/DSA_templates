@@ -72,6 +72,8 @@ struct SegmentTree
         t[i] = merge(t[lc(i)], t[rc(i)]);
     }
 
+    // query in the range [ql,qr] both inclusive
+
     long query(int i, long l, long r, long ql, long qr)
     {
         if (l > qr || r < ql)

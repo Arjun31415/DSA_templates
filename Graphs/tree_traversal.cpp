@@ -163,6 +163,9 @@ void dfs(int cur, int par, vector<vector<int>> &adj)
 int parent[100001][32];
 vi out, in;
 int tim = 0;
+
+// ALWAYS CALL parent_calc(root,root,adj);
+// DON'T give p=-1 or p=0 else IT WILL MESS UP THE PARENT ARRAY
 void parent_calc(int cur, int par, vector<vi> &adj)
 {
     parent[cur][0] = par;
