@@ -18,6 +18,9 @@ typedef long long ll;
 vector<vi> edges;
 int n, m;
 
+//n is number of vertices
+// m is the number of edges;
+// edges is the edge list stored as {u,v,w}. i.e efge from u->v woth weight w
 vector<vi> floyd_Warshall(vector<vi> edges, int n, int m)
 {
     vector<vi> d(n + 1, vi(n + 1, inf));
