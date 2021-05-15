@@ -2,12 +2,12 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-#define sz(x) (int)(x).size()
 typedef long long ll;
+#define sz(x) (int)(x).size()
 
 // Range updates and point queries;
 // to update a range [a,b] with +x; do update(a,x) and update(1+b,-x);
-//
+// to query a range [0,a] do ft.query(a+1);
 struct FT
 {
     vector<ll> s;
