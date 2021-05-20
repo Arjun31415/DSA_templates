@@ -12,6 +12,7 @@ using namespace std;
 #define rc(x) ((x << 1) | 1)
 #define pb push_back
 // 0 based segment tree
+// the query range is also 0 based indexing
 #define FIO                       \
     ios_base::sync_with_stdio(0); \
     cin.tie(0);                   \
