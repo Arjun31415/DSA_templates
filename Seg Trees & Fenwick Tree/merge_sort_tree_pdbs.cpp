@@ -1,7 +1,7 @@
 /* ***************************************************************************** 
                             MERGE SORT TREE
         query         :given [L,R,K] return number of elements >K in [L,R]
-        point uypdate : given i,val set A[i]=val
+        point update : given i,val set A[i]=val
 
     we are storing a balanced binary search tree(BST) or an ordered set at each node in the merge sort tree.
 Note : 
@@ -38,6 +38,7 @@ const int N = 3e4 + 10;
 ordered_set ST[4 * N];
 int A[N], n;
 
+// 0 based indexing for arrays,queries and updates
 void build(int x = 0, int l = 0, int r = n - 1)
 {
     if (l == r)
