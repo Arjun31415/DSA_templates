@@ -32,7 +32,7 @@ using namespace std;
     cin.tie(0);                   \
     cout.tie(0)
 const int N = 30000 + 5;
-vector<int> tree[5 * N];
+vector<int> tree[4 * N];
 int A[N];
 void build_tree(int cur, int l, int r)
 {
