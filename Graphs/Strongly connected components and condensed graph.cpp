@@ -20,7 +20,7 @@ using namespace std;
     while (x--)
 #define trace(x) cerr << #x << ": " << x << " " << endl;
 
-int n, m;                    // nnumber of nodes and number of edges reespectively
+int n, m;                    // number of nodes and number of edges reespectively
 vector<vi> adj, rev, cg_adj; // condensed graph
 vi scc_no;                   //strongly connected component number
 
