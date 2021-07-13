@@ -35,10 +35,18 @@ typedef long long ll;
 typedef unsigned long long ull;
 int n;
 vector<vi> adj;
-long long binpow(long long a, long long b, long long m)
+/**
+ * @brief find (a^b)%m in O(log(b))
+ * 
+ * @param a the base
+ * @param b the exponent
+ * @param m modullo
+ * @return (a^b)%m
+ */
+ll binpow(ll a, ll b, ll m)
 {
     a %= m;
-    long long res = 1;
+    ll res = 1;
     while (b > 0)
     {
         if (b & 1)
@@ -48,11 +56,17 @@ long long binpow(long long a, long long b, long long m)
     }
     return res;
 }
-// src is the source node
-// col is the colour of the node if it is -1 then no colur is assigned
-// 0 and 1 are the other two colours
-// returns true if the connected component includeing source is bipartitie
 
+/**
+ * @brief finds whether the given connected identified by source node is bipartite or not
+ * 
+ * @param src the source node
+ * @param col is the vector denoting the color of the nodes. 
+ * If it is -1 no colour is assigned. 
+ * 1/0 are the colours used
+ * @return true if the connected component including source is bipartitie
+ * @return false if the connected component including the source is not bipartite
+ */
 bool bfs(int src, vector<int> &col)
 {
     queue<int> q;
@@ -75,7 +89,10 @@ bool bfs(int src, vector<int> &col)
     }
     return 1;
 }
-// calculates the number of ways to colur the graph such that it is bipartitie
+/**
+ * @brief calculates the number of ways to colur the graph such that it is bipartitie
+ * @return int the number of ways to 2-color the graph
+ */
 int num_bipartitions()
 {
     int cmp = 0;
