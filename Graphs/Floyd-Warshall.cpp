@@ -15,22 +15,29 @@ typedef unsigned long long ull;
 typedef long double ld;
 typedef long long ll;
 
-vector<vi> edges;
+vector<vi> edges, d;
 int n, m;
 
-//n is number of vertices
-// m is the number of edges;
-// edges is the edge list stored as {u,v,w}. i.e efge from u->v woth weight w
-vector<vi> floyd_Warshall(vector<vi> edges, int n, int m)
+/**
+
+ * @brief finds all pair shortest path between the nodes present in the graph.
+ * If the two nodes are not reachable then d[i][j]=inf and if there is a negative cycle between them
+ * d[i][j] = -inf
+ * @param edges edges is the edge list stored as {u,v,w}. i.e efge from u->v woth weight w
+ * @param n n is number of vertices
+ * @param m m is the number of edges;
+ * @param d the matrix in which the distance is to be stored
+ */
+void floyd_Warshall(vector<vi> edges, int n, int m, vector<vi> &d = ::d)
 {
-    vector<vi> d(n + 1, vi(n + 1, inf));
+    d = vector<vi>(n + 1, vi(n + 1, inf));
     for (int i = 1; i <= n; i++)
     {
         d[i][i] = 0;
     }
     for (auto e : edges)
     {
-        d[e[0]][e[1]] = e[2];
+        d[e[0]][e[1]] = min(d[e[0]][e[1]], e[2]);
     }
     for (int k = 1; k <= n; ++k)
         for (int i = 1; i <= n; i++)
@@ -58,7 +65,7 @@ vector<vi> floyd_Warshall(vector<vi> edges, int n, int m)
             }
         }
 
-    return d;
+    return;
 }
 signed main()
 {
