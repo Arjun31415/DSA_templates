@@ -18,14 +18,19 @@ typedef long double ld;
 typedef long long ll;
 
 vector<vi> edges;
-// finds the shortest path between souce and every other node in the graph
-// src is the source node (1 indexed)
-// n is the number of nodes in the graph
-// edges array is the adjacency edge list
-// if there is a negative cycle one of the d[i] values will be -inf
-// to find all such nodes which are affected by negative cycle make it
-// FOR(i, 0, 2*n + 1, 1)
-vi Bellman_Ford(int src, int n, vector<vi> edges = ::edges)
+
+/**
+ * @brief finds the shortest path between souce and every other node in the graph
+ * if there is a negative cycle one of the d[i] values will be -inf
+ * to find all such nodes which are affected by negative cycle make it
+ *  FOR(i, 0, 2*n + 1, 1)
+ * 
+ * @param src the source node (1 indexed)
+ * @param n  the number of nodes in the graph
+ * @param edges the adjacency edge list
+ * @return vector<int> shortest distance
+ */
+vector<int> Bellman_Ford(int src, int n, vector<vi> edges = ::edges)
 {
     vi d(n + 1, inf);
     d.at(src) = 0;
@@ -44,7 +49,12 @@ vi Bellman_Ford(int src, int n, vector<vi> edges = ::edges)
             }
             else
             {
-                if (d[u] + w < d[v])
+                if (d[u] + w < d[v] and
+                    // remove this line if u want
+                    //  to check for any negative cycle in the graph
+                    // the below condition only checks for negative cycles
+                    // affecting the path from source to v
+                    d[u] != inf and d[v] != inf)
                 {
                     d[v] = -inf;
                 }
@@ -53,10 +63,15 @@ vi Bellman_Ford(int src, int n, vector<vi> edges = ::edges)
     }
     return d;
 }
-// finds a multisource shortest path using Bellman Ford algorithm
-// n is the number of nodes in the graph
-// edges array is the adjacency edge list
-vi multisource_shortest_path(int n)
+
+/**
+ * @brief finds a multisource shortest path using Bellman Ford algorithm,
+ *  where every node is treated as a source.
+ * 
+ * @param n number of nodes in the graph
+ * @return vector<int> shortest distance
+ */
+vector<int> multisource_shortest_path(int n)
 {
 
     vi d(n + 1, 0);
@@ -71,7 +86,12 @@ vi multisource_shortest_path(int n)
             }
             else
             {
-                if (d[v] > d[u] + w)
+                if (d[v] > d[u] + w and
+                    // remove this line if u want
+                    //  to check for any negative cycle in the graph
+                    // the below condition only checks for negative cycles
+                    // affecting the path from source to v
+                    d[u] != inf and d[v] != inf)
                 {
                     d[v] = -inf;
                 }
@@ -81,10 +101,14 @@ vi multisource_shortest_path(int n)
     return d;
 }
 
-// finds a multisource shortest path using Bellman Ford algorithm
-// n is the number of nodes in the graph
-// sources is the array of sources from which we wish to find multisource shortest path
-// edges array is the adjacency edge list
+/**
+ * @brief finds a multisource shortest path using Bellman Ford algorithm. 
+ * edges array is the global adjacency edge list
+ * 
+ * @param n number of nodes in the graph
+ * @param sources array of sources from which we wish to find multisource shortest path
+ * @return vi 
+ */
 vi multisource_shortest_path(int n, vi sources)
 {
 
@@ -106,7 +130,12 @@ vi multisource_shortest_path(int n, vi sources)
             }
             else
             {
-                if (d[v] > d[u] + w)
+                if (d[v] > d[u] + w and
+                    // remove this line if u want
+                    //  to check for any negative cycle in the graph
+                    // the below condition only checks for negative cycles
+                    // affecting the path from source to v
+                    d[u] != inf and d[v] != inf)
                 {
                     d[v] = -inf;
                 }
@@ -116,16 +145,19 @@ vi multisource_shortest_path(int n, vi sources)
     return d;
 }
 
-//refer https://cp-algorithms.com/graph/bellman_ford.html
-// uses Bellman-Ford algorithm to calculate shortest path and return the shortest path
-// Note: negative cycles are not detected
-// src is the sorrce node from which the shortest path is calculated
-// dest is the destination node where the shortest path ends
-// n is the number of nodes in the graph
-// edges array is the adjacency edge list
-// dist is a refrence to a distance array
-// path is refrence to a path array
-void path_retrival(int src, int dest, int n, vector<vi> edges = ::edges, vi &dist, vi &path)
+/**
+ * @brief 
+ * refer https://cp-algorithms.com/graph/bellman_ford.html.
+ * uses Bellman-Ford algorithm to calculate shortest path and return the shortest path
+ * Note: negative cycles are not detected
+ * @param src  source node from which the shortest path is calculated
+ * @param dest destination node where the shortest path ends
+ * @param n number of nodes in the graph
+ * @param dist refrence to a distance array
+ * @param path refrence to a path array
+ * @param edges adjacency edge list
+ */
+void path_retrival(int src, int dest, int n, vi &dist, vi &path, vector<vi> edges = ::edges)
 {
 
     vi d(n + 1, inf);
@@ -173,8 +205,15 @@ void path_retrival(int src, int dest, int n, vector<vi> edges = ::edges, vi &dis
         //     cout << path[i] << ' ';
     }
 }
-// Bellman_Ford for adjacency list 
-// pii- pair of node,weight
+
+/**
+ * @brief 
+ * Bellman Ford for adjacency list
+ * @param src src node from which shortest distance
+ *  to all other nodes is to be computed
+ * @param n number of nodes in the graph
+ * @param adj adjacency edge list , pii-> pair of node,weight
+ */
 void Bellman_Ford(int src, int n, vector<vector<pii>> adj)
 {
     vector<float> d(n + 1, inf);
@@ -208,14 +247,17 @@ void Bellman_Ford(int src, int n, vector<vector<pii>> adj)
     }
 }
 
-// reverses the direction of edges in the graph
-// edges array is the adjacency edge list
+/**
+ * @brief reverses the direction of edges in the graph
+ * 
+ * @param edges adjacency edge list
+ */
 void reverse_graph(vector<vi> &edges)
 {
     for (vi &e : edges)
         swap(e[0], e[1]);
 }
-int main()
+int32_t main()
 {
     //N vertices
     int N;
