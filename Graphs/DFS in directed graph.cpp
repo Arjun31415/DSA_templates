@@ -63,7 +63,7 @@ void dfs(int i, vi &vis)
             //Cross Edge;
         }
     }
-
+    // mark it as 2 to signify it is out of call stack
     vis[i] = 2;
 }
 
