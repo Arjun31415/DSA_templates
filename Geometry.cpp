@@ -1,7 +1,7 @@
 #ifndef _USE_MATH_DEFINES
 #define _USE_MATH_DEFINES
 #endif
-#include <bits\stdc++.h>
+#include <bits/stdc++.h>
 #include <type_traits>
 #include <utility>
 #include <cmath>
