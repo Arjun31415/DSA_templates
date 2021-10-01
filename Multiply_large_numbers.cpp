@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <string.h>
-#include <bits/stdc++.h>
+#include <vector>
+#include <algorithm>
+#include <string>
+#include <iostream>
 using namespace std;
 
 #define float long double
@@ -21,9 +24,10 @@ using namespace std;
     ios_base::sync_with_stdio(0); \
     cin.tie(0);                   \
     cout.tie(0)
-mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+
 // caluclates S1 *S2
-// the ans array stores the answer in reverse format,i.e ans[0]=units digit ans[1]=ten's digit.
+// the ans array stores the answer in reverse format
+// i.e ans[0]=units digit ans[1]=ten's digit.
 // O(5*N) time for each multiplication
 // a string containing the answer in proper format is returned
 string multiply(string s1, string s2)
@@ -35,19 +39,15 @@ string multiply(string s1, string s2)
     int i, j, tmp;
     int ans[(int)2e5] = {0};
     for (i = l1 - 1, j = 0; i >= 0; i--, j++)
-    {
         a[j] = s1[i] - '0';
-    }
+
     for (i = l2 - 1, j = 0; i >= 0; i--, j++)
-    {
         b[j] = s2[i] - '0';
-    }
+
     for (i = 0; i < l2; i++)
     {
         for (j = 0; j < l1; j++)
-        {
             ans[i + j] += b[i] * a[j];
-        }
     }
     for (i = 0; i < l1 + l2; i++)
     {
@@ -56,10 +56,8 @@ string multiply(string s1, string s2)
         ans[i + 1] = ans[i + 1] + tmp;
     }
     for (i = l1 + l2; i >= 0; i--)
-    {
         if (ans[i] > 0)
             break;
-    }
     string s3;
     for (; i >= 0; i--)
     {
