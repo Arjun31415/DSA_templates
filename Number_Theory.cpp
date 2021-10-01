@@ -114,11 +114,6 @@ long long binpow(long long a, long long b, long long m)
 // Call FIO in main
 signed main()
 {
-    FIO;
-    auto t1 = std::chrono::high_resolution_clock::now();
-    int T; // number of test cases
-    cin >> T;
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
-    //cerr<< duration;
+
     return 0;
 }
