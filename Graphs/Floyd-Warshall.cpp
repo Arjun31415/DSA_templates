@@ -83,7 +83,7 @@ signed main()
         int u, v, w;
         cin >> u >> v >> w;
         edges.pb({u, v, w});
-        edges.pb({v, u, w});
+        // edges.pb({v, u, w});
     }
     floyd_Warshall(edges, n, m);
     return 0;
