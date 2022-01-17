@@ -143,10 +143,10 @@ long long max_val(int root, vector<vi> &adj, vi &val, int n)
 
 int level[10001] = {};
 int subtr[10001] = {};
-//dfs on trees
-// n is the number of nodes
-// level stores the level of each node with the root being at level 1
-// subtr stores the subtree size for each node
+// dfs on trees
+//  n is the number of nodes
+//  level stores the level of each node with the root being at level 1
+//  subtr stores the subtree size for each node
 void dfs(int cur, int par, vector<vector<int>> &adj)
 {
     cout << cur << " ";
@@ -164,7 +164,7 @@ vector<vi> parent;
 vi out, in;
 int tim = 0;
 int l;
-// to assign all the vectors and variables call precalc()
+// to assign all the vectors and variables call preprocess()
 
 // ALWAYS CALL parent_calc(root,root,adj);
 // DON'T give p=-1 or p=0 else IT WILL MESS UP THE PARENT ARRAY
