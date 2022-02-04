@@ -1,4 +1,4 @@
-//List of Problems - https : //leetcode.com/list/xysqsyp7/s
+//List of Problems - https://leetcode.com/list/xysqsyp7/s
 
 #include <stdlib.h>
 #include <cstring>
