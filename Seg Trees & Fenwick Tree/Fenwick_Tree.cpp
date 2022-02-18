@@ -20,6 +20,11 @@ struct FT
         for (; pos < sz(s); pos |= pos + 1)
             s[pos] += dif;
     }
+    void update(unsigned long long a, unsigned long long b, T x)
+    {
+        update(a, x), update(1 + b, -x);
+        return;
+    }
     // returns sum of values in [0, pos)
     T query(unsigned long long pos)
     {
@@ -33,5 +38,19 @@ struct FT
     T query(unsigned long long l, unsigned long long r)
     {
         query(r + 1) - query(l);
+    }
+
+    T lower_bound(T sum)
+    { // min pos s t sum of [0 , pos ] >= sum
+        // Returns n i f no sum is >= sum, or −1 i f empty sum is .
+        if (sum <= 0)
+            return -1;
+        int pos = 0;
+        for (int pw = 1 << 25; pw; pw >>= 1)
+        {
+            if (pos + pw <= sz(s) && s[pos + pw - 1] < sum)
+                pos += pw, sum -= s[pos - 1];
+        }
+        return pos;
     }
 };
