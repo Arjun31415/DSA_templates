@@ -93,7 +93,7 @@ int dijkstra(int start, vi &d, int n)
     }
     if (d[n] == inf)
     {
-        //cout<<"-1"<<endl;
+        // cout<<"-1"<<endl;
         d[n] = -1;
     }
     return 0;
@@ -136,7 +136,7 @@ int multisource(vi sources, vi &d, int n)
     }
     if (d[n] == inf)
     {
-        //cout<<"-1"<<endl;
+        // cout<<"-1"<<endl;
         d[n] = -1;
     }
     return 0;
@@ -145,10 +145,10 @@ int multisource(vi sources, vi &d, int n)
 // stores node, weight pair
 // returns distance array
 // par stores the parent array giving the shortest path spanning tree
-vi dijkstra(int src, int n, vector<vector<pair<int, int>>> adj)
+vi dijkstra(int src, int n, vector<vector<pair<int, int>>> &adj)
 {
     vi d(n + 1, inf), par(n + 1);
-    set<pii> s; //first->d, second->node
+    set<pii> s; // first->d, second->node
 
     d[src] = 0;
     s.insert({0, src});
@@ -197,7 +197,6 @@ vi dijikstra(int src, vector<vector<pair<int, int>>> adj, int n)
         f[u] = true;
 
         // 'i' is used to get all adjacent vertices of a vertex
-        list<pair<int, int>>::iterator i;
         for (auto i = adj[u].begin(); i != adj[u].end(); ++i)
         {
             // Get vertex label and weight of current adjacent

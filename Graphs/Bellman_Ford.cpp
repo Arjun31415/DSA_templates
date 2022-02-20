@@ -24,7 +24,7 @@ vector<vi> edges;
  * if there is a negative cycle one of the d[i] values will be -inf
  * to find all such nodes which are affected by negative cycle make it
  *  FOR(i, 0, 2*n + 1, 1)
- * 
+ *
  * @param src the source node (1 indexed)
  * @param n  the number of nodes in the graph
  * @param edges the adjacency edge list
@@ -67,7 +67,7 @@ vector<int> Bellman_Ford(int src, int n, vector<vi> edges = ::edges)
 /**
  * @brief finds a multisource shortest path using Bellman Ford algorithm,
  *  where every node is treated as a source.
- * 
+ *
  * @param n number of nodes in the graph
  * @return vector<int> shortest distance
  */
@@ -102,12 +102,12 @@ vector<int> multisource_shortest_path(int n)
 }
 
 /**
- * @brief finds a multisource shortest path using Bellman Ford algorithm. 
+ * @brief finds a multisource shortest path using Bellman Ford algorithm.
  * edges array is the global adjacency edge list
- * 
+ *
  * @param n number of nodes in the graph
  * @param sources array of sources from which we wish to find multisource shortest path
- * @return vi 
+ * @return vi
  */
 vi multisource_shortest_path(int n, vi sources)
 {
@@ -146,7 +146,7 @@ vi multisource_shortest_path(int n, vi sources)
 }
 
 /**
- * @brief 
+ * @brief
  * refer https://cp-algorithms.com/graph/bellman_ford.html.
  * uses Bellman-Ford algorithm to calculate shortest path and return the shortest path
  * Note: negative cycles are not detected
@@ -184,7 +184,7 @@ void path_retrival(int src, int dest, int n, vi &dist, vi &path, vector<vi> edge
     }
     if (d[dest] == inf)
     {
-        //cout << "No path from " << src << " to " << dest << "\n";
+        // cout << "No path from " << src << " to " << dest << "\n";
         path.resize(1);
         path.at(0) = -inf;
         dist = d;
@@ -207,7 +207,7 @@ void path_retrival(int src, int dest, int n, vi &dist, vi &path, vector<vi> edge
 }
 
 /**
- * @brief 
+ * @brief
  * Bellman Ford for adjacency list
  * @param src src node from which shortest distance
  *  to all other nodes is to be computed
@@ -225,7 +225,7 @@ void Bellman_Ford(int src, int n, vector<vector<pii>> adj)
         {
             int u = j, v = it->ff;
             float w = it->ss;
-            //trace3(u, v, w);
+            // trace3(u, v, w);
             if (d[u] < inf)
             {
                 d[v] = min(d[v], d[u] + w);
@@ -249,7 +249,7 @@ void Bellman_Ford(int src, int n, vector<vector<pii>> adj)
 
 /**
  * @brief reverses the direction of edges in the graph
- * 
+ *
  * @param edges adjacency edge list
  */
 void reverse_graph(vector<vi> &edges)
@@ -259,7 +259,7 @@ void reverse_graph(vector<vi> &edges)
 }
 int32_t main()
 {
-    //N vertices
+    // N vertices
     int N;
     cin >> N;
     // M edges

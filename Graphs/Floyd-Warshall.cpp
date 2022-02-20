@@ -18,7 +18,7 @@ typedef long long ll;
 vector<vi> edges, d;
 int n, m;
 
-/**e
+/**
 
  * @brief finds all pair shortest path between the nodes present in the graph.
  * If the two nodes are not reachable then d[i][j]=inf and if there is a negative cycle between them
@@ -44,7 +44,7 @@ void floyd_Warshall(vector<vi> edges, int n, int m, vector<vi> &d = ::d)
         for (int i = 1; i <= n; i++)
             for (int j = 1; j <= n; j++)
             {
-                if (d[i][k] < inf and d[k][j] < inf)
+                if (d[i][k] < inf && d[k][j] < inf)
                 {
                     d[i][j] = min(d[i][j], d[k][j] + d[i][k]);
                 }
@@ -65,7 +65,7 @@ void floyd_Warshall(vector<vi> edges, int n, int m, vector<vi> &d = ::d)
             {
                 // is th possible to reach j from i through x
                 // and is the distance from x to itself less than 0
-                if (d[i][x] < inf and d[x][j] < inf and d[x][x] < 0)
+                if (d[i][x] < inf && d[x][j] < inf && d[x][x] < 0)
                 {
                     d[i][j] = -inf;
                     break;
