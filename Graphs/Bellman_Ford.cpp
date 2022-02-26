@@ -49,12 +49,12 @@ vector<int> Bellman_Ford(int src, int n, vector<vi> edges = ::edges)
             }
             else
             {
-                if (d[u] + w < d[v] and
+                if (d[u] + w < d[v] &&
                     // remove this line if u want
                     //  to check for any negative cycle in the graph
                     // the below condition only checks for negative cycles
                     // affecting the path from source to v
-                    d[u] != inf and d[v] != inf)
+                    d[u] != inf && d[v] != inf)
                 {
                     d[v] = -inf;
                 }
@@ -86,12 +86,12 @@ vector<int> multisource_shortest_path(int n)
             }
             else
             {
-                if (d[v] > d[u] + w and
+                if (d[v] > d[u] + w &&
                     // remove this line if u want
                     //  to check for any negative cycle in the graph
                     // the below condition only checks for negative cycles
                     // affecting the path from source to v
-                    d[u] != inf and d[v] != inf)
+                    d[u] != inf && d[v] != inf)
                 {
                     d[v] = -inf;
                 }
@@ -130,12 +130,12 @@ vi multisource_shortest_path(int n, vi sources)
             }
             else
             {
-                if (d[v] > d[u] + w and
+                if (d[v] > d[u] + w &&
                     // remove this line if u want
                     //  to check for any negative cycle in the graph
                     // the below condition only checks for negative cycles
                     // affecting the path from source to v
-                    d[u] != inf and d[v] != inf)
+                    d[u] != inf && d[v] != inf)
                 {
                     d[v] = -inf;
                 }
