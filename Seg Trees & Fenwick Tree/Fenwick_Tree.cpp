@@ -37,7 +37,7 @@ struct FT
     //  query [l,r];
     T query(unsigned long long l, unsigned long long r)
     {
-        query(r + 1) - query(l);
+        return query(r + 1) - query(l);
     }
 
     T lower_bound(T sum)

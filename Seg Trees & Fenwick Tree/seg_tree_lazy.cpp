@@ -1,10 +1,10 @@
-/* 
-    Segment tree supporting point updates and range queries 
-   currently supports range max query 
+/*
+    Segment tree supporting point updates and range queries
+   currently supports range max query
      1 indexed tree(t) and source array(a)
      give build(1,1,N), where N is the size of source array (a)
 
-    Range Sum queries refer : 
+    Range Sum queries refer :
     problem : https://cses.fi/problemset/task/1651/
     solution: https://cses.fi/paste/fd3e8d634491d3cd1c12ed/
    current lazy update is set a[i]+=val;
@@ -13,7 +13,7 @@
    set a[i]=x;
 */
 
-#include <bits\stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 #define vi vector<int>
@@ -28,13 +28,13 @@ using namespace std;
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 struct Data
 {
-    //Use required attributes
+    // Use required attributes
     int mn = 0;
 
-    //Default Values
-    // since max queries are to be done (on positive numbers) default value of mn is aasigned 0,
-    // but instead if min queries are to be done assign mn=INT_MAX.
-    // for other cases give appropriate values
+    // Default Values
+    //  since max queries are to be done (on positive numbers) default value of mn is aasigned 0,
+    //  but instead if min queries are to be done assign mn=INT_MAX.
+    //  for other cases give appropriate values
     Data() : mn(0){};
 };
 
@@ -60,13 +60,13 @@ struct SegTree
         build(1, 1, N);
     }
 
-    //Write required merge functions
+    // Write required merge functions
     void merge(Data &cur, Data &l, Data &r)
     {
         cur.mn = max(l.mn, r.mn);
     }
 
-    //Handle lazy propagation appriopriately
+    // Handle lazy propagation appriopriately
     void propagate(int node, int L, int R)
     {
         if (lazy[node] == 0)
