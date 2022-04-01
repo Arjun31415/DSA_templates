@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <string>
 #include <iostream>
+#include<assert.h>
 using namespace std;
 
 #define float long double
@@ -36,6 +37,7 @@ string multiply(string s1, string s2)
     int a[(int)(1e5)], b[(int)(1e5)];
     int l1 = s1.length();
     int l2 = s2.size();
+    assert(l1>=1 && l2>=1);
     int i, j, tmp;
     int ans[(int)2e5] = {0};
     for (i = l1 - 1, j = 0; i >= 0; i--, j++)
