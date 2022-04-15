@@ -1,6 +1,6 @@
 /*
                          Square Root Decomposition on Array
-                         
+
     query         :given [L,R,K] return number of elements >K in [L,R]
     point uypdate : given i,val set A[i]=val
 
@@ -8,8 +8,9 @@
 
 Note:
     1) Another method is by maintaining Merge sort tree
-    2) Maintaining persistent segment tree and apply square root decomposition on the queries. 
-       This method(using Persistent Segment Trees) is better because it has smaller constant factor
+    2) Maintaining persistent segment tree and apply square root decomposition
+on the queries. This method(using Persistent Segment Trees) is better because it
+has smaller constant factor
 */
 
 #include <bits/stdc++.h>
@@ -39,14 +40,14 @@ using namespace std;
 #define ps(x, y) fixed << setprecision(y) << x
 #define mk(arr, n, type) type *arr = new type[n];
 #define range(a, b) substr(a, b - a + 1)
-#define w(x)  \
-    int x;    \
-    cin >> x; \
+#define w(x)                                                                   \
+    int x;                                                                     \
+    cin >> x;                                                                  \
     while (x--)
 #define trace(x) cerr << #x << ": " << x << " " << endl;
-#define FIO                       \
-    ios_base::sync_with_stdio(0); \
-    cin.tie(0);                   \
+#define FIO                                                                    \
+    ios_base::sync_with_stdio(0);                                              \
+    cin.tie(0);                                                                \
     cout.tie(0)
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
@@ -59,7 +60,9 @@ typedef unsigned long long ull;
 
 typedef long double ld;
 
-typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> pbds;
+typedef tree<int, null_type, less<int>, rb_tree_tag,
+             tree_order_statistics_node_update>
+    pbds;
 void tracearr(vi a)
 {
     for (int i = 0; i < a.size(); i++)
@@ -85,19 +88,9 @@ void print(vi a, int l, int u)
     }
     cout << "\n";
 }
-void print(vi a)
-{
-
-    print(a, 0, a.size());
-}
-void printl(vi a, int l)
-{
-    print(a, l, a.size());
-}
-void printu(vi a, int u)
-{
-    print(a, 0, u);
-}
+void print(vi a) { print(a, 0, a.size()); }
+void printl(vi a, int l) { print(a, l, a.size()); }
+void printu(vi a, int u) { print(a, 0, u); }
 void trace2d(vector<vi> a)
 {
     for (int i = 0; i < a.size(); i++)
@@ -123,13 +116,13 @@ signed main()
     {
         cin >> a[i];
         S[i / B].pb(a[i]);
-        //trace(S[i / B][i % B]);
+        // trace(S[i / B][i % B]);
     }
     for (int i = 0; i < N / B; i++)
     {
         sort(all(S[i]));
     }
-    //trace2d(S);
+    // trace2d(S);
     int q;
     cin >> q;
     while (q--)
@@ -166,15 +159,15 @@ signed main()
 
             for (int i = L; i <= end; i++)
             {
-                //trace(a[i]);
+                // trace(a[i]);
                 if (a[i] > K)
                     ans++;
             }
-            //step 2:
+            // step 2:
 
             for (int i = begin; i <= R; i++)
             {
-                //trace(a[i]);
+                // trace(a[i]);
                 if (a[i] > K)
                     ans++;
             }
@@ -197,12 +190,13 @@ signed main()
             int i = pos % B;
             S[b][i] = val;
             sort(all(S[b]));
-            //cerr << "\n\n";
-            //trace2d(S);
+            // cerr << "\n\n";
+            // trace2d(S);
         }
     }
     auto t2 = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
+    auto duration =
+        std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
     // cerr << duration << " us";
     return 0;
 }
