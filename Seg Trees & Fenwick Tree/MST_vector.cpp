@@ -69,7 +69,8 @@ int query(int cur, int l, int r, int x, int y, int k)
     }
     if (x <= l && r <= y)
     {
-        // Binary search over the current sorted vector to find elements smaller
+        // Binary search over the current 
+        // sorted vector to find elements smaller
         // than K
         //  tracearr(tree[cur]);
         return lower_bound(tree[cur].begin(), tree[cur].end(), k,
