@@ -3,8 +3,8 @@
 #define vi vector<int>
 using namespace std;
 // finds number of palindromic substrings
-// odd[i]<- number of palindromic substrings centered at i including the charater itself
-// even[i]<- number of palindromic substrings centered at i
+// odd[i]<- number of palindromic substrings centered at i including the
+// charater itself even[i]<- number of palindromic substrings centered at i
 int manachers(string s)
 {
     int n = s.size();
@@ -49,7 +49,8 @@ int manachers(string s)
     {
 
         ans += odd[i];
-        // or ans+=odd[i]-1 ; to negelect the single character palindromes but make sure odd[i]>1
+        // or ans+=odd[i]-1 ; to negelect the single character palindromes but
+        // make sure odd[i]>1
         if (even[i])
             ans += even[i];
     }
@@ -96,7 +97,7 @@ void LPS(string pat, int M, vector<int> &lps)
         }
     }
 }
-//given a string it will find the number of occurences of it in txt
+// given a string it will find the number of occurences of it in txt
 void KMPSearch(string pat, string txt)
 {
     int M = pat.size();
@@ -133,7 +134,7 @@ void KMPSearch(string pat, string txt)
             if (j != 0)
                 j = lps[j - 1];
             else
-                i = i + 1;
+                i++;
         }
     }
 }
