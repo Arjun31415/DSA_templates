@@ -230,6 +230,7 @@ struct custom_hash
         return splitmix64(x + FIXED_RANDOM);
     }
 };
+void calc(){}
 signed main()
 {
 #ifndef ONLINE_JUDGE
