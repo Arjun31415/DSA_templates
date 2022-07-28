@@ -210,11 +210,11 @@ int d(int u, int v)
 // n is the number of nodes
 void preprocess(int root, int n, vector<vi> &adj)
 {
-    in.clear(), in.resize(n);
-    out.clear(), out.resize(n);
+    in.clear(), in.resize(n+1);
+    out.clear(), out.resize(n+1);
     tim = 0;
-    ::l = ceil(log2(n));
-    parent.clear(), parent.assign(n, vector<int>(l + 1));
+    ::l = ceil(log2(n+1));
+    parent.clear(), parent.assign(n+1, vector<int>(l + 1));
     dfs(root, root, adj);
 }
 signed main()
