@@ -182,7 +182,8 @@ Point<T> cross(Point<T> a, Point<T> b)
 	T x0 = a.x, y0 = a.y, z0 = a.z;
 	T x1 = b.x, y1 = b.y, z1 = b.z;
 	// adding 0.00 to avoid -0 output
-	return Point<T>(y0 * z1 - z0 * y1 + 0.00, z0 * x1 - x0 * z1 + 0.00, x0 * y1 - y0 * x1 + 0.00);
+	return Point<T>(y0 * z1 - z0 * y1 + 0.00, 
+            z0 * x1 - x0 * z1 + 0.00, x0 * y1 - y0 * x1 + 0.00);
 }
 template <typename T>
 
