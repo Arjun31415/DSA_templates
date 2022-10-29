@@ -74,8 +74,7 @@ namespace stringTrie
                 cur = cur->children[c - 'a'];
                 cur->cnt--;
             }
-            if (cur->cnt == 0)
-                cur->end = false;
+            cur->end = false;
         }
         void remove(vector<string> &s)
         {
@@ -111,6 +110,7 @@ namespace intTrie
 
     public:
         Node *children[2] = {};
+        bool end;
 
         // cnt variable at each node is keeping a count of integers
         // which passes through that node while inserting the integer
@@ -124,7 +124,7 @@ namespace intTrie
         int cnt;
         Node()
         {
-            cnt = 0;
+            end = 0, cnt = 0;
         }
     };
     class Trie
@@ -142,6 +142,7 @@ namespace intTrie
         {
             // call the default constructor
             Trie();
+
             insert(a);
         }
         Trie(vector<int> &a, int bits)
@@ -167,6 +168,7 @@ namespace intTrie
                 cur = cur->children[b];
                 cur->cnt++;
             }
+            cur->end = true;
         }
         void insert(vector<int> &a)
         {
@@ -182,6 +184,7 @@ namespace intTrie
                 cur = cur->children[b];
                 cur->cnt--;
             }
+            cur->end = false;
         }
         void remove(vector<int> &s)
         {
@@ -198,7 +201,7 @@ namespace intTrie
                     return 0;
                 cur = cur->children[b];
             }
-            return cur->cnt > 0;
+            return cur->end;
         }
         int maxxor(int x)
         {
@@ -207,7 +210,7 @@ namespace intTrie
             for (int i = bits; i >= 0; i--)
             {
                 bool b = (x >> i) & 1;
-                if (cur->children[!b] && cur->children[!b]->cnt > 0)
+                if (cur->children[!b] and cur->children[!b]->cnt > 0)
                 {
                     ans += (1LL << i);
                     cur = cur->children[!b];
