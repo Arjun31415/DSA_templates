@@ -123,7 +123,7 @@ namespace intTrie
         int cnt;
         Node()
         {
-            end = 0, cnt = 0;
+            cnt = 0;
         }
     };
     class Trie
