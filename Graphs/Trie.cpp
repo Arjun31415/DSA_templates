@@ -74,7 +74,8 @@ namespace stringTrie
                 cur = cur->children[c - 'a'];
                 cur->cnt--;
             }
-            cur->end = false;
+            if (cur->cnt == 0)
+                cur->end = false;
         }
         void remove(vector<string> &s)
         {
