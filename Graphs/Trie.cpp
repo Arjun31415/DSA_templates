@@ -1,4 +1,4 @@
-//List of Problems - https://leetcode.com/list/xysqsyp7/s
+// List of Problems - https://leetcode.com/list/xysqsyp7/s
 
 #include <stdlib.h>
 #include <cstring>
@@ -16,16 +16,16 @@ namespace stringTrie
         // end tells us that whether at this node a string has been completed or not
         bool end;
 
-        //cnt variable at each node is keeping a count of
-        //strings which passes through that node while
-        //inserting the string into trie.
+        // cnt variable at each node is keeping a count of
+        // strings which passes through that node while
+        // inserting the string into trie.
 
-        //A string is being added into this trie character by character
-        //So, lets say the character representation at a node from
-        //root of the trie to that node is abc (I.e.node is at level 3),
-        //so cnt at this node will give the no of strings which have
-        //prefix charcters representation as abc like the nos with
-        //charcters representation abcdef...., abcff......, abceeghx.... Etc.
+        // A string is being added into this trie character by character
+        // So, lets say the character representation at a node from
+        // root of the trie to that node is abc (I.e.node is at level 3),
+        // so cnt at this node will give the no of strings which have
+        // prefix charcters representation as abc like the nos with
+        // charcters representation abcdef...., abcff......, abceeghx.... Etc.
 
         int cnt;
         Node()
@@ -140,7 +140,8 @@ namespace intTrie
         }
         Trie(vector<int> &a)
         {
-            root = new Node();
+            // call the default constructor
+            Trie();
             insert(a);
         }
         Trie(vector<int> &a, int bits)
